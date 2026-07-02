@@ -11,7 +11,6 @@
 //   - For EXPLAIN tasks, write your answer as a comment below the prompt
 // ============================================================
 
-
 // ------------------------------------------------------------
 // SECTION A — Passing and Receiving Props
 //
@@ -25,57 +24,68 @@
 // The StudentBadge component below is hardcoded — it always shows the same text.
 // we will update this soon.
 
-function StudentBadge() {
-  return (
-    <div>
-      <h3>Student Name</h3>
-      <p>Grade: 0</p>
-    </div>
-  )
+function StudentBadge(props) {
+    return (
+        <div>
+            <h3>Student Name: {props.name}</h3>
+            <p>Grade: {props.grade}</p>
+        </div>
+    );
 }
 
 function SectionA() {
-  // A1.
-  // Render StudentBadge three times in the return statement below.
-  // Notice what happens — every badge looks exactly the same no matter how many you add.
-  // This is the problem props solve.
+    // A1.
+    // Render StudentBadge three times in the return statement below.
+    // Notice what happens — every badge looks exactly the same no matter how many you add.
+    // This is the problem props solve.
 
-  // A2.
-  // Now go back and update the StudentBadge component so it accepts props
-  // and displays the name and grade dynamically instead of hardcoded text.
-  // Remember: every component receives a single object, conventionally named props.
+    // A2.
+    // Now go back and update the StudentBadge component so it accepts props
+    // and displays the name and grade dynamically instead of hardcoded text.
+    // Remember: every component receives a single object, conventionally named props.
 
-  // Then pass a different name and grade to each of your three StudentBadge components.
-  // Each one should now show different data.
-  //
-  // Hint: think about what a function needs in order to receive values from the outside.
-  // Hint2: think about how properties are added and accessed on objects.
+    // Then pass a different name and grade to each of your three StudentBadge components.
+    // Each one should now show different data.
+    //
+    // Hint: think about what a function needs in order to receive values from the outside.
+    // Hint2: think about how properties are added and accessed on objects.
 
-  // A3.
-  // Create a new component called TeacherCard from scratch.
-  // It should accept props and display a teacher's name and the subject they teach.
-  // Render it once below your badges with real values passed in.
-  //
-  // This shows that props work the same way on any component you build.
-  //
-  // EXPLAIN: What are props?
-  //          Can you change a prop's value inside the component that receives it?
-  //          Why or why not?
-  //
-  //          answer:
+    // A3.
+    // Create a new component called TeacherCard from scratch.
+    // It should accept props and display a teacher's name and the subject they teach.
+    // Render it once below your badges with real values passed in.
+    //
+    // This shows that props work the same way on any component you build.
+    //
+    // EXPLAIN: What are props?
+    //          Can you change a prop's value inside the component that receives it?
+    //          Why or why not?
+    //
+    //          answer: props are parent components passed to children components. props are read-only
 
-  return (
-    <div>
-      <h2>Section A — Props</h2>
-      <StudentBadge />
-      {/* A1 + A2: Render two more StudentBadge components here */}
+    function TeacherCard(props) {
+        return (
+            <div>
+                <h3>Teacher Name: {props.name}</h3>
+                <p>Subject: {props.subject}</p>
+            </div>
+        );
+    }
 
-      {/* A3: Render your TeacherCard here */}
+    return (
+        <div>
+            <h2>Section A — Props</h2>
+            <StudentBadge name="James" grade="B" />
+            {/* A1 + A2: Render two more StudentBadge components here */}
+            <StudentBadge name="Alice" grade="B" />
+            <StudentBadge name="Robbin" grade="A" />
+            <StudentBadge name="Grace" grade="C" />
 
-    </div>
-  )
+            {/* A3: Render your TeacherCard here */}
+            <TeacherCard name="Abdul" subject="Math" />
+        </div>
+    );
 }
-
 
 // ------------------------------------------------------------
 // SECTION B — Props with Different Data Types
@@ -100,38 +110,48 @@ function SectionA() {
 //
 // Write PlayerCard here:
 
+function PlayerCard(props) {
+    const display = props.isActive ? "Active" : "Inactive";
 
-
-function SectionB() {
-  // B2.
-  // Render three PlayerCard components with different values.
-  // At least one should have isActive as true and one as false.
-  // You should see the correct status text on each card.
-
-  return (
-    <div>
-      <h2>Section B — Props with Different Types</h2>
-      {/* Render your PlayerCard components here */}
-
-    </div>
-  )
+    return (
+        <div>
+            <h3>Player name: {props.name}</h3>
+            <p>Score: {props.score}</p>
+            <p>{display}</p>
+        </div>
+    );
 }
 
+function SectionB() {
+    // B2.
+    // Render three PlayerCard components with different values.
+    // At least one should have isActive as true and one as false.
+    // You should see the correct status text on each card.
+
+    return (
+        <div>
+            <h2>Section B — Props with Different Types</h2>
+            {/* Render your PlayerCard components here */}
+            <PlayerCard name="Bob" score={100} isActive={true} />
+            <PlayerCard name="Greg" score={80} isActive={false} />
+        </div>
+    );
+}
 
 // ------------------------------------------------------------
 // Do not edit below this line.
 // ------------------------------------------------------------
 
 function Part2() {
-  return (
-    <section>
-      <h1>Part 2 — Props</h1>
-      <hr />
-      <SectionA />
-      <hr />
-      <SectionB />
-    </section>
-  )
+    return (
+        <section>
+            <h1>Part 2 — Props</h1>
+            <hr />
+            <SectionA />
+            <hr />
+            <SectionB />
+        </section>
+    );
 }
 
-export default Part2
+export default Part2;
