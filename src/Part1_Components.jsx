@@ -3,7 +3,7 @@
 //
 // How to verify your work:
 //   Run "npm run dev" in your terminal from the ttp-checkpoint-2 folder.
-//   Make sure the dev server in the terminal is running. 
+//   Make sure the dev server in the terminal is running.
 //   Open http://localhost:5173 in your browser.
 //   Every time you save this file, the browser updates automatically.
 //   Look at the page — that is how you know your code is working.
@@ -13,7 +13,6 @@
 //   - Each task tells you exactly what to build and where to put it
 //   - For EXPLAIN tasks, write your answer as a comment below the prompt
 // ============================================================
-
 
 // ------------------------------------------------------------
 // SECTION A — JSX Basics
@@ -26,47 +25,52 @@
 // ------------------------------------------------------------
 
 function SectionA() {
-  // A1.
-  // Declare a variable called myName and assign it your first name as a string.
-  // Declare a variable called myCity and assign it the city you are from.
+    // A1.
+    // Declare a variable called myName and assign it your first name as a string.
+    // Declare a variable called myCity and assign it the city you are from.
 
+    const myName = "Seoyeon";
+    const myCity = "New York City";
+    const result = 25 + 17;
 
-  // A2.
-  // Inside the return below, add a <p> tag that displays your name.
-  // Add a second <p> tag that displays your city.
-  // Embed each variable into the JSX rather than typing the value directly.
-  //
-  // Hint: How do you embed a JavaScript value inside JSX?
-  //      If you don't embed the value correctly,
-  //      React treats the text literally and prints the
-  //      variable name instead of its value.
+    // A2.
+    // Inside the return below, add a <p> tag that displays your name.
+    // Add a second <p> tag that displays your city.
+    // Embed each variable into the JSX rather than typing the value directly.
+    //
+    // Hint: How do you embed a JavaScript value inside JSX?
+    //      If you don't embed the value correctly,
+    //      React treats the text literally and prints the
+    //      variable name instead of its value.
 
+    // A3.
+    // Using your myName variable, display your name in all uppercase inside a <p> tag.
+    // The text should update automatically if you change your name — do not hardcode it.
 
-  // A3.
-  // Using your myName variable, display your name in all uppercase inside a <p> tag.
-  // The text should update automatically if you change your name — do not hardcode it.
+    // A4.
+    // Display the number of characters in your name inside a <p> tag.
 
-  // A4.
-  // Display the number of characters in your name inside a <p> tag.
+    // A5.
+    // Declare a variable and assign it the result of 25 + 17.
+    // Add a <p> tag that shows both the expression and the computed value on the same line.
+    //
+    // EXPLAIN: What is JSX? How is it different from plain HTML?
+    //          Why do you need curly braces to embed a variable's value?
+    //
+    //          answer: JSX is the syntax React uses to describe what goes on page. Plain HTML cannot have JavaScript. Curly braces are used to indicate variable to differentiate from plain text.
 
-  // A5.
-  // Declare a variable and assign it the result of 25 + 17.
-  // Add a <p> tag that shows both the expression and the computed value on the same line.
-  //
-  // EXPLAIN: What is JSX? How is it different from plain HTML?
-  //          Why do you need curly braces to embed a variable's value?
-  //
-  //          answer:
-
-  return (
-    <div>
-      <h2>Section A — JSX Basics</h2>
-      {/* Your output goes below this line */}
-
-    </div>
-  )
+    return (
+        <div>
+            <h2>Section A — JSX Basics</h2>
+            {/* Your output goes below this line */}
+            <p>
+                {myName.toUpperCase()}: {myName.length} characters
+            </p>
+            <p>{myCity}</p>
+            <p>25 + 17 = {result}</p>
+        </div>
+    );
 }
-
 
 // ------------------------------------------------------------
 // SECTION B — Writing Your Own Components - you don't need to export anything
@@ -87,6 +91,18 @@ function SectionA() {
 //
 // Write PageHeader here:
 
+function PageHeader() {
+    return (
+        <h1>
+            My React App
+            <nav>
+                <a>Home</a>
+                <a>About</a>
+                <a>Contact</a>
+            </nav>
+        </h1>
+    );
+}
 
 // B2.
 // Create a component called PageFooter.
@@ -94,28 +110,34 @@ function SectionA() {
 //
 // Write PageFooter here:
 
-
-function SectionB() {
-  // B3.
-  // Render your PageHeader and PageFooter components inside the div below.
-  // You should see both appear on the page when you save.
-  //
-  // EXPLAIN: What is a React component?
-  //          Why do we split UI into separate components instead of
-  //          writing everything inside one big function?
-  //
-  //          answer:
-
-
-  return (
-    <div>
-      <h2>Section B — Your Own Components</h2>
-      {/* Render your components below */}
-
-    </div>
-  )
+function PageFooter() {
+    return (
+        <footer>
+            <p>2026 TTP</p>
+        </footer>
+    );
 }
 
+function SectionB() {
+    // B3.
+    // Render your PageHeader and PageFooter components inside the div below.
+    // You should see both appear on the page when you save.
+    //
+    // EXPLAIN: What is a React component?
+    //          Why do we split UI into separate components instead of
+    //          writing everything inside one big function?
+    //
+    //          answer: React component is a piece of UI. We split to easily relocate UI elements.
+
+    return (
+        <div>
+            <h2>Section B — Your Own Components</h2>
+            {/* Render your components below */}
+            <PageHeader />
+            <PageFooter />
+        </div>
+    );
+}
 
 // ------------------------------------------------------------
 // Do not edit below this line.
@@ -123,15 +145,15 @@ function SectionB() {
 // ------------------------------------------------------------
 
 function Part1() {
-  return (
-    <section>
-      <h1>Part 1 — JSX and Components</h1>
-      <hr />
-      <SectionA />
-      <hr />
-      <SectionB />
-    </section>
-  )
+    return (
+        <section>
+            <h1>Part 1 — JSX and Components</h1>
+            <hr />
+            <SectionA />
+            <hr />
+            <SectionB />
+        </section>
+    );
 }
 
-export default Part1
+export default Part1;
