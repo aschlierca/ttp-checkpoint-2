@@ -11,7 +11,6 @@
 //   - For EXPLAIN tasks, write your answer as a comment below the prompt
 // ============================================================
 
-
 // ------------------------------------------------------------
 // SECTION A — Rendering a List from an Array
 //
@@ -23,47 +22,59 @@
 
 // The following array is provided. Do not change it.
 const players = [
-  { id: 1, name: "LeBron",  score: 42 },
-  { id: 2, name: "Curry",   score: 31 },
-  { id: 3, name: "Messi",   score: 55 },
-  { id: 4, name: "Serena",  score: 18 },
-  { id: 5, name: "Brady",   score: 67 },
-]
+    { id: 1, name: "LeBron", score: 42 },
+    { id: 2, name: "Curry", score: 31 },
+    { id: 3, name: "Messi", score: 55 },
+    { id: 4, name: "Serena", score: 18 },
+    { id: 5, name: "Brady", score: 67 },
+];
 
 function SectionA() {
-  // A1.
-  // Use .map() to render each player as a <li> inside the <ul> below.
-  // Each item should display the player's name and score.
-  // Each <li> needs a 'key' prop — use the player's id.
-  //
-  // Why: React requires a unique key on each item in a mapped list so it
-  //      can track which items changed, were added, or were removed.
+    // A1.
+    // Use .map() to render each player as a <li> inside the <ul> below.
+    // Each item should display the player's name and score.
+    // Each <li> needs a 'key' prop — use the player's id.
+    //
+    // Why: React requires a unique key on each item in a mapped list so it
+    //      can track which items changed, were added, or were removed.
 
-  // A2.
-  // Add a second list below that shows only players with a score above 30.
-  // Use .filter() on the array first, then .map() the result.
-  // Add an <h3> above it that says "Score above 30".
-  //
-  // EXPLAIN: Why does React require a key prop on each list item?
-  //          What happens if two items share the same key?
-  //
-  //          answer:
+    // A2.
+    // Add a second list below that shows only players with a score above 30.
+    // Use .filter() on the array first, then .map() the result.
+    // Add an <h3> above it that says "Score above 30".
+    //
+    // EXPLAIN: Why does React require a key prop on each list item?
+    //          What happens if two items share the same key?
+    //
+    //          answer: key prop allows stable tracking of each list items. if two items share the same key React may confuse with two of them
 
-  return (
-    <div>
-      <h2>Section A — Rendering a List</h2>
-      <h3>All Players</h3>
-      <ul>
-        {/* A1: map players here: */}
+    return (
+        <div>
+            <h2>Section A — Rendering a List</h2>
+            <h3>All Players</h3>
+            <ul>
+                {/* A1: map players here: */}
+                {players.map((player) => (
+                    <li key={player.id}>
+                        {player.name} - {player.score}
+                    </li>
+                ))}
+            </ul>
 
-      </ul>
-
-      {/* A2: filtered list goes here: */}
-
-    </div>
-  )
+            {/* A2: filtered list goes here: */}
+            <h3>Score above 30</h3>
+            <ul>
+                {players
+                    .filter((player) => player.score > 30)
+                    .map((player) => (
+                        <li key={player.id}>
+                            {player.name} - {player.score}
+                        </li>
+                    ))}
+            </ul>
+        </div>
+    );
 }
-
 
 // ------------------------------------------------------------
 // SECTION B — Lists and Components
@@ -79,47 +90,57 @@ function SectionA() {
 // It should accept props and display a player's name and score inside a <div>.
 //
 // Write PlayerRow here:
-
-
-
-function SectionB() {
-  // B2.
-  // Use .map() to render a PlayerRow for each player in the array.
-  // Pass the player's name and score as props to each one.
-  // Each PlayerRow still needs a key — put it on the PlayerRow itself.
-  //
-  // Notice how this is cleaner than writing out each player by hand,
-  // and reuses the same component structure for every item.
-  //
-  // EXPLAIN: What is the advantage of rendering a component inside .map()
-  //          compared to mapping to a plain HTML element like <li>?
-  //
-  //          answer:
-
-  return (
-    <div>
-      <h2>Section B — Lists and Components</h2>
-      {/* B2: map PlayerRow components here */}
-
-    </div>
-  )
+function PlayerRow(props) {
+    return (
+        <div>
+            {props.name} - {props.score}
+        </div>
+    );
 }
 
+function SectionB() {
+    // B2.
+    // Use .map() to render a PlayerRow for each player in the array.
+    // Pass the player's name and score as props to each one.
+    // Each PlayerRow still needs a key — put it on the PlayerRow itself.
+    //
+    // Notice how this is cleaner than writing out each player by hand,
+    // and reuses the same component structure for every item.
+    //
+    // EXPLAIN: What is the advantage of rendering a component inside .map()
+    //          compared to mapping to a plain HTML element like <li>?
+    //
+    //          answer: It can be used anywhere else too
+
+    return (
+        <div>
+            <h2>Section B — Lists and Components</h2>
+            {/* B2: map PlayerRow components here */}
+            {players.map((player) => (
+                <PlayerRow
+                    key={player.id}
+                    name={player.name}
+                    score={player.score}
+                />
+            ))}
+        </div>
+    );
+}
 
 // ------------------------------------------------------------
 // Do not edit below this line.
 // ------------------------------------------------------------
 
 function Part3() {
-  return (
-    <section>
-      <h1>Part 3 — Rendering Lists</h1>
-      <hr />
-      <SectionA />
-      <hr />
-      <SectionB />
-    </section>
-  )
+    return (
+        <section>
+            <h1>Part 3 — Rendering Lists</h1>
+            <hr />
+            <SectionA />
+            <hr />
+            <SectionB />
+        </section>
+    );
 }
 
-export default Part3
+export default Part3;
